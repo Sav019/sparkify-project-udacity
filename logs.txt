@@ -1,89 +1,3 @@
-2024-09-27T10:33:59.248362+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-2024-09-27T10:33:59.248362+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-2024-09-27T10:33:59.248362+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
-2024-09-27T10:33:59.248363+00:00 app[web.1]: ModuleNotFoundError: No module named 'disaster-response-app'
-2024-09-27T10:33:59.248405+00:00 app[web.1]: [2024-09-27 10:33:59 +0000] [9] [INFO] Worker exiting (pid: 9)
-2024-09-27T10:33:59.267137+00:00 app[web.1]: [2024-09-27 10:33:59 +0000] [2] [ERROR] Worker (pid:9) exited with code 3
-2024-09-27T10:33:59.267320+00:00 app[web.1]: [2024-09-27 10:33:59 +0000] [2] [ERROR] Shutting down: Master
-2024-09-27T10:33:59.267340+00:00 app[web.1]: [2024-09-27 10:33:59 +0000] [2] [ERROR] Reason: Worker failed to boot.
-2024-09-27T10:33:59.321160+00:00 heroku[web.1]: Process exited with status 3
-2024-09-27T10:33:59.345396+00:00 heroku[web.1]: State changed from starting to crashed
-2024-09-27T10:34:08.000000+00:00 app[api]: Build succeeded
-2024-09-27T10:44:38.000000+00:00 app[api]: Build started by user savo.asanin@gmail.com
-2024-09-27T10:46:16.258575+00:00 app[api]: Release v7 created by user savo.asanin@gmail.com
-2024-09-27T10:46:16.258575+00:00 app[api]: Deploy a342ae5e by user savo.asanin@gmail.com
-2024-09-27T10:46:16.530903+00:00 heroku[web.1]: State changed from crashed to starting
-2024-09-27T10:46:31.139495+00:00 heroku[web.1]: Starting process with command `gunicorn disaster-response-app:app`
-2024-09-27T10:46:31.682869+00:00 app[web.1]: Python buildpack: Detected 512 MB available memory and 8 CPU cores.
-2024-09-27T10:46:31.682897+00:00 app[web.1]: Python buildpack: Defaulting WEB_CONCURRENCY to 2 based on the available memory.
-2024-09-27T10:46:31.943585+00:00 app[web.1]: [2024-09-27 10:46:31 +0000] [2] [INFO] Starting gunicorn 23.0.0
-2024-09-27T10:46:31.943921+00:00 app[web.1]: [2024-09-27 10:46:31 +0000] [2] [INFO] Listening at: http://0.0.0.0:18932 (2)
-2024-09-27T10:46:31.943958+00:00 app[web.1]: [2024-09-27 10:46:31 +0000] [2] [INFO] Using worker: sync
-2024-09-27T10:46:31.945945+00:00 app[web.1]: [2024-09-27 10:46:31 +0000] [9] [INFO] Booting worker with pid: 9
-2024-09-27T10:46:31.948513+00:00 app[web.1]: [2024-09-27 10:46:31 +0000] [9] [ERROR] Exception in worker process
-2024-09-27T10:46:31.948513+00:00 app[web.1]: Traceback (most recent call last):
-2024-09-27T10:46:31.948521+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
-2024-09-27T10:46:31.948524+00:00 app[web.1]: worker.init_process()
-2024-09-27T10:46:31.948524+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
-2024-09-27T10:46:31.948525+00:00 app[web.1]: self.load_wsgi()
-2024-09-27T10:46:31.948525+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
-2024-09-27T10:46:31.948525+00:00 app[web.1]: self.wsgi = self.app.wsgi()
-2024-09-27T10:46:31.948525+00:00 app[web.1]: ^^^^^^^^^^^^^^^
-2024-09-27T10:46:31.948526+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
-2024-09-27T10:46:31.948526+00:00 app[web.1]: self.callable = self.load()
-2024-09-27T10:46:31.948526+00:00 app[web.1]: ^^^^^^^^^^^
-2024-09-27T10:46:31.948526+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
-2024-09-27T10:46:31.948526+00:00 app[web.1]: return self.load_wsgiapp()
-2024-09-27T10:46:31.948526+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^
-2024-09-27T10:46:31.948526+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
-2024-09-27T10:46:31.948527+00:00 app[web.1]: return util.import_app(self.app_uri)
-2024-09-27T10:46:31.948527+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2024-09-27T10:46:31.948527+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
-2024-09-27T10:46:31.948527+00:00 app[web.1]: mod = importlib.import_module(module)
-2024-09-27T10:46:31.948527+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2024-09-27T10:46:31.948531+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/importlib/__init__.py", line 90, in import_module
-2024-09-27T10:46:31.948531+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
-2024-09-27T10:46:31.948531+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2024-09-27T10:46:31.948531+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-2024-09-27T10:46:31.948531+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-2024-09-27T10:46:31.948531+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
-2024-09-27T10:46:31.948532+00:00 app[web.1]: ModuleNotFoundError: No module named 'disaster-response-app'
-2024-09-27T10:46:31.948563+00:00 app[web.1]: [2024-09-27 10:46:31 +0000] [9] [INFO] Worker exiting (pid: 9)
-2024-09-27T10:46:31.968329+00:00 app[web.1]: [2024-09-27 10:46:31 +0000] [2] [ERROR] Worker (pid:9) exited with code 3
-2024-09-27T10:46:31.968553+00:00 app[web.1]: [2024-09-27 10:46:31 +0000] [2] [ERROR] Shutting down: Master
-2024-09-27T10:46:31.968580+00:00 app[web.1]: [2024-09-27 10:46:31 +0000] [2] [ERROR] Reason: Worker failed to boot.
-2024-09-27T10:46:32.033960+00:00 heroku[web.1]: Process exited with status 3
-2024-09-27T10:46:32.056871+00:00 heroku[web.1]: State changed from starting to crashed
-2024-09-27T10:46:32.061477+00:00 heroku[web.1]: State changed from crashed to starting
-2024-09-27T10:46:46.327875+00:00 heroku[web.1]: Starting process with command `gunicorn disaster-response-app:app`
-2024-09-27T10:46:46.857439+00:00 app[web.1]: Python buildpack: Detected 512 MB available memory and 8 CPU cores.
-2024-09-27T10:46:46.857522+00:00 app[web.1]: Python buildpack: Defaulting WEB_CONCURRENCY to 2 based on the available memory.
-2024-09-27T10:46:47.105429+00:00 app[web.1]: [2024-09-27 10:46:47 +0000] [2] [INFO] Starting gunicorn 23.0.0
-2024-09-27T10:46:47.105685+00:00 app[web.1]: [2024-09-27 10:46:47 +0000] [2] [INFO] Listening at: http://0.0.0.0:42823 (2)
-2024-09-27T10:46:47.105713+00:00 app[web.1]: [2024-09-27 10:46:47 +0000] [2] [INFO] Using worker: sync
-2024-09-27T10:46:47.107808+00:00 app[web.1]: [2024-09-27 10:46:47 +0000] [9] [INFO] Booting worker with pid: 9
-2024-09-27T10:46:47.110790+00:00 app[web.1]: [2024-09-27 10:46:47 +0000] [9] [ERROR] Exception in worker process
-2024-09-27T10:46:47.110791+00:00 app[web.1]: Traceback (most recent call last):
-2024-09-27T10:46:47.110791+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
-2024-09-27T10:46:47.110792+00:00 app[web.1]: worker.init_process()
-2024-09-27T10:46:47.110792+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
-2024-09-27T10:46:47.110792+00:00 app[web.1]: self.load_wsgi()
-2024-09-27T10:46:47.110792+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
-2024-09-27T10:46:47.110793+00:00 app[web.1]: self.wsgi = self.app.wsgi()
-2024-09-27T10:46:47.110793+00:00 app[web.1]: ^^^^^^^^^^^^^^^
-2024-09-27T10:46:47.110793+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
-2024-09-27T10:46:47.110794+00:00 app[web.1]: self.callable = self.load()
-2024-09-27T10:46:47.110794+00:00 app[web.1]: ^^^^^^^^^^^
-2024-09-27T10:46:47.110794+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
-2024-09-27T10:46:47.110794+00:00 app[web.1]: return self.load_wsgiapp()
-2024-09-27T10:46:47.110795+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^
-2024-09-27T10:46:47.110795+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
-2024-09-27T10:46:47.110795+00:00 app[web.1]: return util.import_app(self.app_uri)
-2024-09-27T10:46:47.110795+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2024-09-27T10:46:47.110795+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
-2024-09-27T10:46:47.110796+00:00 app[web.1]: mod = importlib.import_module(module)
-2024-09-27T10:46:47.110796+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2024-09-27T10:46:47.110796+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/importlib/__init__.py", line 90, in import_module
 2024-09-27T10:46:47.110797+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
 2024-09-27T10:46:47.110797+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2024-09-27T10:46:47.110797+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
@@ -98,3 +12,89 @@
 2024-09-27T10:46:48.213355+00:00 heroku[web.1]: State changed from starting to crashed
 2024-09-27T10:47:03.000000+00:00 app[api]: Build succeeded
 2024-09-27T10:47:42.707341+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=disaster-response-app-be215b66c206.herokuapp.com request_id=d6144e35-afc8-4e66-bf52-846924e0b619 fwd="80.142.214.23" dyno= connect= service= status=503 bytes= protocol=https
+2024-09-27T10:51:13.000000+00:00 app[api]: Build started by user savo.asanin@gmail.com
+2024-09-27T10:53:06.645433+00:00 app[api]: Release v8 created by user savo.asanin@gmail.com
+2024-09-27T10:53:06.645433+00:00 app[api]: Deploy 4a3460ae by user savo.asanin@gmail.com
+2024-09-27T10:53:07.221892+00:00 heroku[web.1]: State changed from crashed to starting
+2024-09-27T10:53:21.242793+00:00 heroku[web.1]: Starting process with command `gunicorn run.py:app`
+2024-09-27T10:53:21.768019+00:00 app[web.1]: Python buildpack: Detected 512 MB available memory and 8 CPU cores.
+2024-09-27T10:53:21.768050+00:00 app[web.1]: Python buildpack: Defaulting WEB_CONCURRENCY to 2 based on the available memory.
+2024-09-27T10:53:22.015734+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [2] [INFO] Starting gunicorn 23.0.0
+2024-09-27T10:53:22.016056+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [2] [INFO] Listening at: http://0.0.0.0:18351 (2)
+2024-09-27T10:53:22.016098+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [2] [INFO] Using worker: sync
+2024-09-27T10:53:22.018059+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [9] [INFO] Booting worker with pid: 9
+2024-09-27T10:53:22.021162+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [9] [ERROR] Exception in worker process
+2024-09-27T10:53:22.021169+00:00 app[web.1]: Traceback (most recent call last):
+2024-09-27T10:53:22.021169+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2024-09-27T10:53:22.021170+00:00 app[web.1]: worker.init_process()
+2024-09-27T10:53:22.021170+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2024-09-27T10:53:22.021170+00:00 app[web.1]: self.load_wsgi()
+2024-09-27T10:53:22.021171+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2024-09-27T10:53:22.021171+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2024-09-27T10:53:22.021171+00:00 app[web.1]: ^^^^^^^^^^^^^^^
+2024-09-27T10:53:22.021172+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2024-09-27T10:53:22.021172+00:00 app[web.1]: self.callable = self.load()
+2024-09-27T10:53:22.021172+00:00 app[web.1]: ^^^^^^^^^^^
+2024-09-27T10:53:22.021172+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2024-09-27T10:53:22.021173+00:00 app[web.1]: return self.load_wsgiapp()
+2024-09-27T10:53:22.021173+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^
+2024-09-27T10:53:22.021173+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2024-09-27T10:53:22.021173+00:00 app[web.1]: return util.import_app(self.app_uri)
+2024-09-27T10:53:22.021173+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T10:53:22.021174+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2024-09-27T10:53:22.021174+00:00 app[web.1]: mod = importlib.import_module(module)
+2024-09-27T10:53:22.021174+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T10:53:22.021174+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2024-09-27T10:53:22.021174+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2024-09-27T10:53:22.021174+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T10:53:22.021174+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2024-09-27T10:53:22.021175+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2024-09-27T10:53:22.021175+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+2024-09-27T10:53:22.021175+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2024-09-27T10:53:22.021175+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2024-09-27T10:53:22.021175+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2024-09-27T10:53:22.021175+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+2024-09-27T10:53:22.021175+00:00 app[web.1]: ModuleNotFoundError: No module named 'run'
+2024-09-27T10:53:22.021224+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [9] [INFO] Worker exiting (pid: 9)
+2024-09-27T10:53:22.030246+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [10] [INFO] Booting worker with pid: 10
+2024-09-27T10:53:22.032832+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [10] [ERROR] Exception in worker process
+2024-09-27T10:53:22.032833+00:00 app[web.1]: Traceback (most recent call last):
+2024-09-27T10:53:22.032834+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2024-09-27T10:53:22.032835+00:00 app[web.1]: worker.init_process()
+2024-09-27T10:53:22.032835+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2024-09-27T10:53:22.032835+00:00 app[web.1]: self.load_wsgi()
+2024-09-27T10:53:22.032836+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2024-09-27T10:53:22.032844+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2024-09-27T10:53:22.032844+00:00 app[web.1]: ^^^^^^^^^^^^^^^
+2024-09-27T10:53:22.032844+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2024-09-27T10:53:22.032844+00:00 app[web.1]: self.callable = self.load()
+2024-09-27T10:53:22.032845+00:00 app[web.1]: ^^^^^^^^^^^
+2024-09-27T10:53:22.032845+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2024-09-27T10:53:22.032845+00:00 app[web.1]: return self.load_wsgiapp()
+2024-09-27T10:53:22.032845+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^
+2024-09-27T10:53:22.032845+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2024-09-27T10:53:22.032846+00:00 app[web.1]: return util.import_app(self.app_uri)
+2024-09-27T10:53:22.032846+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T10:53:22.032846+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2024-09-27T10:53:22.032846+00:00 app[web.1]: mod = importlib.import_module(module)
+2024-09-27T10:53:22.032847+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T10:53:22.032847+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2024-09-27T10:53:22.032848+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2024-09-27T10:53:22.032848+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T10:53:22.032848+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2024-09-27T10:53:22.032848+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2024-09-27T10:53:22.032849+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+2024-09-27T10:53:22.032849+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2024-09-27T10:53:22.032849+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2024-09-27T10:53:22.032849+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2024-09-27T10:53:22.032850+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+2024-09-27T10:53:22.032850+00:00 app[web.1]: ModuleNotFoundError: No module named 'run'
+2024-09-27T10:53:22.032936+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [10] [INFO] Worker exiting (pid: 10)
+2024-09-27T10:53:22.043410+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [2] [ERROR] Worker (pid:9) exited with code 3
+2024-09-27T10:53:22.044603+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [2] [ERROR] Worker (pid:10) was sent SIGTERM!
+2024-09-27T10:53:22.143814+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [2] [ERROR] Shutting down: Master
+2024-09-27T10:53:22.143832+00:00 app[web.1]: [2024-09-27 10:53:22 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2024-09-27T10:53:22.204278+00:00 heroku[web.1]: Process exited with status 3
+2024-09-27T10:53:22.228466+00:00 heroku[web.1]: State changed from starting to crashed
+2024-09-27T10:54:11.000000+00:00 app[api]: Build succeeded
+2024-09-27T10:55:26.844287+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=disaster-response-app-be215b66c206.herokuapp.com request_id=7179244a-f695-480c-b370-48b6c82a32c1 fwd="80.142.214.23" dyno= connect= service= status=503 bytes= protocol=https
