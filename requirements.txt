@@ -3,6 +3,7 @@ certifi==2024.6.2
 chardet==4.0.0
 click==8.1.7
 Flask==3.0.3
+gunicorn==23.0.0
 idna==3.7
 importlib-metadata==7.0.1
 ipython-genutils==0.2.0
