@@ -2,8 +2,6 @@ import json
 import re
 import plotly
 import pandas as pd
-import os
-import shutil
 
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
@@ -20,94 +18,186 @@ from sqlalchemy import create_engine
 app = Flask(__name__)
 
 def tokenize(text):
-    # Tokenization logic (same as before)
+
+    """
+    Tokenizes the input text by removing URLs, stripping non-alphabetic characters, 
+    tokenizing the text into words, lemmatizing the words, and removing stop words.
+    
+    Args:
+        text (str): The input text to be tokenized.
+        
+    Returns:
+        list: The list of cleaned tokens.
+    """
+
     url_regex = r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
     rest_regex = r"[^a-zA-Z0-9]"
+    
+    #Stripping messages of all urls ?
     detected_urls = re.findall(url_regex, text)
     for url in detected_urls:
         text = text.replace(url, "urlplaceholder")
-    stripped = re.sub(rest_regex, " ", text)
+    
+    #Stripping the messages of all symbols like ., or ?
+    stripped = re.sub(rest_regex," ",text)
+    # Tokenize the sentences to words
     tokens = word_tokenize(stripped)
+    
+    # Lemmatize the words (e.g. defined to define)
     lemmatizer = WordNetLemmatizer()
-    clean_tokens = [lemmatizer.lemmatize(tok).lower().strip() for tok in tokens if tok not in stopwords.words("english")]
+    clean_tokens = []
+    for tok in tokens:
+        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+        
+        #Remove Stop-words
+        if tok not in stopwords.words("english"):
+            clean_tokens.append(clean_tok)
+        
     return clean_tokens
 
-# ---- New Section for Database Handling ----
-# Check if running on Heroku (PostgreSQL) or local (SQLite)
-if 'DATABASE_URL' in os.environ:
-    # Running on Heroku, use PostgreSQL
-    engine = create_engine(os.getenv('DATABASE_URL'))
-else:
-    # Running locally or in a Heroku dyno, use SQLite and copy it to /tmp
-    db_path = '/tmp/DisasterResponse.db'
-    bundled_db_path = '../data/DisasterResponse.db'
-
-    # Copy bundled DB to /tmp if not already present
-    if not os.path.exists(db_path):
-        shutil.copyfile(bundled_db_path, db_path)
-
-    # Create SQLite engine using the /tmp directory
-    engine = create_engine(f'sqlite:///{db_path}')
-# ---- End of New Section ----
-
-# load data from the SQLite/PostgreSQL database
+# load data
+engine = create_engine('sqlite:///../data/DisasterResponse.db')
 df = pd.read_sql_table('DisasterResponse.db', engine)
 
 # load model
 model = load("../models/classifier.pkl")
 
-# The rest of the app logic (routes and functions) remains the same
+# index webpage displays cool visuals and receives user input text for model
 @app.route('/')
 @app.route('/index')
 def index():
-    # Function to render visuals (same as before)
+
+    """
+    Renders the index webpage, which displays visualizations of the data.
+
+    This function extracts the necessary data from the DataFrame and creates Plotly graphs to visualize the distribution of message genres, categories and a corrlation matrix.
+
+    The function then encodes the Plotly graphs in JSON format and passes them to the 'master.html' template, along with the IDs of the graphs.
+
+    Returns:
+        Rendered HTML template for the index page, with the Plotly graphs.
+    """
+    
+    # extract data needed for visuals
+    # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+
+    # Number of data points per column
     numeric_cols = df.select_dtypes(include='number').columns
     column_sums = df[numeric_cols].sum(axis=0).drop("id")
     column_names = list(column_sums.index)
     
+    # create visuals
+    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
-            'data': [Bar(x=genre_names, y=genre_counts)],
+            'data': [
+                Bar(
+                    x=genre_names,
+                    y=genre_counts
+                )
+            ],
             'layout': {
                 'title': 'Distribution of Message Genres',
-                'yaxis': {'title': "Count"},
-                'xaxis': {'title': "Genre"}
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Genre"
+                }
             }
         },
         {
-            'data': [Bar(x=column_names, y=column_sums)],
+            'data': [
+                Bar(
+                    x=column_names,
+                    y=column_sums
+                )
+            ],
             'layout': {
                 'title': 'Number of Data Points per Column',
-                'yaxis': {'title': "Count"},
-                'xaxis': {'title': "Column"}
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Column"
+                }
             }
         },
         {
-            'data': [Heatmap(x=numeric_cols, y=numeric_cols, z=df[numeric_cols].corr(), colorscale='RdBu_r', zmin=-1, zmax=1)],
+            'data': [
+                Heatmap(
+                    x=numeric_cols,
+                    y=numeric_cols,
+                    z=df[numeric_cols].corr(),
+                    colorscale='RdBu_r',
+                    zmin=-1,
+                    zmax=1
+                )
+            ],
             'layout': {
                 'title': 'Correlation Matrix',
-                'xaxis': {'title': 'Categories', 'tickangle': 90},
-                'yaxis': {'title': 'Categories'}
+                'xaxis': {
+                    'title': 'Categories',
+                    'tickangle': 90
+                },
+                'yaxis': {
+                    'title': 'Categories'
+                }
             }
         }
     ]
     
+    # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
     
+    # render web page with plotly graphs
     return render_template('master.html', ids=ids, graphJSON=graphJSON)
 
+
+# web page that handles user query and displays model results
 @app.route('/go')
 def go():
+
+    """
+    Renders the 'go' webpage, which displays the classification results for a user's input.
+
+    This function retrieves the user's input query from the request arguments, uses the trained model to predict the classification labels, and then renders the 'go.html' template with the query and classification results.
+
+    Returns:
+        Rendered HTML template for the 'go' page, with the user's input query and the classification results.
+    """
+    
+    # save user input in query
     query = request.args.get('query', '') 
+
+    # use model to predict classification for query
     classification_labels = model.predict([query])[0]
     classification_results = dict(zip(df.columns[4:], classification_labels))
-    return render_template('go.html', query=query, classification_result=classification_results)
+
+    # This will render the go.html Please see that file. 
+    return render_template(
+        'go.html',
+        query=query,
+        classification_result=classification_results
+    )
+
 
 def main():
+
+    """
+    The main function that runs the Flask app.
+
+    This function starts the Flask app and runs it on the specified host and port with debug mode enabled.
+
+    Usage:
+        python run.py
+    """
+    
     app.run(host='0.0.0.0', port=3000, debug=True)
+
 
 if __name__ == '__main__':
     main()
