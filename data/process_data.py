@@ -1,6 +1,5 @@
 import sys
-
-# import libraries
+import os
 import pandas as pd
 import re
 import numpy as np
@@ -27,8 +26,6 @@ def load_data(messages_filepath, categories_filepath):
     df = pd.merge(messages, categories, on="id", how="inner")
       
     return df 
-    
-    pass
 
 
 def clean_data(df):
@@ -52,16 +49,13 @@ def clean_data(df):
     
     # Set values to numeric values only (0 or 1)
     for column in categories:
-        # set each value to be the last character of the string
         categories[column] = categories[column].astype(str).str[-1]
-        
-        # convert column from string to numeric
         categories[column] = categories[column].astype(int)
         
     # Drop rows that have values that are not exactly 0 or 1
     categories = categories[(categories.map(lambda x: x in [0, 1])).all(axis=1)]
 
-    #remove columns that only have 0 as values
+    # Remove columns that only have 0 as values
     categories = categories.loc[:, (categories != 0).any(axis=0)]
     
     # Drop the original categories column from `df`
@@ -74,30 +68,34 @@ def clean_data(df):
     df = df.drop_duplicates()
     
     return df
-    
-    pass
 
 
 def save_data(df, database_filename):
 
     """
-    Saves the cleaned dataset to a SQLite database.
+    Saves the cleaned dataset to a SQLite or PostgreSQL database.
     
     Args:
         df (pd.DataFrame): The cleaned dataset.
-        database_filename (str): The file path of the SQLite database.
+        database_filename (str): The file path or URL of the database.
     """
+
+    # Check if running on Heroku (PostgreSQL) or local (SQLite)
+    if 'DATABASE_URL' in os.environ:
+        # Running on Heroku, use PostgreSQL
+        engine = create_engine(os.getenv('DATABASE_URL'))
+    else:
+        # Running locally, use SQLite
+        engine = create_engine(f'sqlite:///{database_filename}')
     
-    engine = create_engine("sqlite:///" + database_filename)
-    df.to_sql(database_filename, engine, index=False, if_exists='replace')
-    
-    pass  
+    # Save the DataFrame to the database
+    df.to_sql('DisasterResponse', engine, index=False, if_exists='replace')
 
 
 def main():
 
     """
-    The main function that processes the data and saves it to a SQLite database.
+    The main function that processes the data and saves it to a SQLite or PostgreSQL database.
     
     Usage:
         python process_data.py <messages_filepath> <categories_filepath> <database_filepath>
@@ -105,7 +103,7 @@ def main():
     Args:
         sys.argv[1] (str): The file path of the messages dataset.
         sys.argv[2] (str): The file path of the categories dataset.
-        sys.argv[3] (str): The file path of the SQLite database.
+        sys.argv[3] (str): The file path of the database.
     """
     
     if len(sys.argv) == 4:

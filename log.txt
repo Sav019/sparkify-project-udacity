@@ -1,0 +1,100 @@
+2024-09-27T12:22:59.127739+00:00 app[web.1]: Traceback (most recent call last):
+2024-09-27T12:22:59.127739+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+2024-09-27T12:22:59.127740+00:00 app[web.1]: worker.init_process()
+2024-09-27T12:22:59.127740+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/workers/base.py", line 135, in init_process
+2024-09-27T12:22:59.127740+00:00 app[web.1]: self.load_wsgi()
+2024-09-27T12:22:59.127740+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+2024-09-27T12:22:59.127740+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2024-09-27T12:22:59.127741+00:00 app[web.1]: ^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127741+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/base.py", line 66, in wsgi
+2024-09-27T12:22:59.127741+00:00 app[web.1]: self.callable = self.load()
+2024-09-27T12:22:59.127741+00:00 app[web.1]: ^^^^^^^^^^^
+2024-09-27T12:22:59.127741+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+2024-09-27T12:22:59.127742+00:00 app[web.1]: return self.load_wsgiapp()
+2024-09-27T12:22:59.127742+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127742+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+2024-09-27T12:22:59.127742+00:00 app[web.1]: return util.import_app(self.app_uri)
+2024-09-27T12:22:59.127742+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127743+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/gunicorn/util.py", line 370, in import_app
+2024-09-27T12:22:59.127743+00:00 app[web.1]: mod = importlib.import_module(module)
+2024-09-27T12:22:59.127743+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127748+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2024-09-27T12:22:59.127748+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2024-09-27T12:22:59.127749+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127749+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+2024-09-27T12:22:59.127749+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+2024-09-27T12:22:59.127749+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+2024-09-27T12:22:59.127750+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+2024-09-27T12:22:59.127750+00:00 app[web.1]: File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+2024-09-27T12:22:59.127750+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+2024-09-27T12:22:59.127750+00:00 app[web.1]: File "/app/app/run.py", line 60, in <module>
+2024-09-27T12:22:59.127751+00:00 app[web.1]: df = pd.read_sql_table('DisasterResponse.db', engine)
+2024-09-27T12:22:59.127751+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127751+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/pandas/io/sql.py", line 384, in read_sql_table
+2024-09-27T12:22:59.127751+00:00 app[web.1]: with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+2024-09-27T12:22:59.127752+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127752+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/pandas/io/sql.py", line 906, in pandasSQL_builder
+2024-09-27T12:22:59.127752+00:00 app[web.1]: return SQLDatabase(con, schema, need_transaction)
+2024-09-27T12:22:59.127752+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127753+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/pandas/io/sql.py", line 1636, in __init__
+2024-09-27T12:22:59.127753+00:00 app[web.1]: con = self.exit_stack.enter_context(con.connect())
+2024-09-27T12:22:59.127753+00:00 app[web.1]: ^^^^^^^^^^^^^
+2024-09-27T12:22:59.127753+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3278, in connect
+2024-09-27T12:22:59.127754+00:00 app[web.1]: return self._connection_cls(self)
+2024-09-27T12:22:59.127754+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127754+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 148, in __init__
+2024-09-27T12:22:59.127754+00:00 app[web.1]: Connection._handle_dbapi_exception_noconnection(
+2024-09-27T12:22:59.127756+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2442, in _handle_dbapi_exception_noconnection
+2024-09-27T12:22:59.127756+00:00 app[web.1]: raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+2024-09-27T12:22:59.127756+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 146, in __init__
+2024-09-27T12:22:59.127756+00:00 app[web.1]: self._dbapi_connection = engine.raw_connection()
+2024-09-27T12:22:59.127757+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127757+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3302, in raw_connection
+2024-09-27T12:22:59.127757+00:00 app[web.1]: return self.pool.connect()
+2024-09-27T12:22:59.127757+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127757+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+2024-09-27T12:22:59.127758+00:00 app[web.1]: return _ConnectionFairy._checkout(self)
+2024-09-27T12:22:59.127758+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127758+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1263, in _checkout
+2024-09-27T12:22:59.127758+00:00 app[web.1]: fairy = _ConnectionRecord.checkout(pool)
+2024-09-27T12:22:59.127759+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127759+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 712, in checkout
+2024-09-27T12:22:59.127759+00:00 app[web.1]: rec = pool._do_get()
+2024-09-27T12:22:59.127759+00:00 app[web.1]: ^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127759+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 179, in _do_get
+2024-09-27T12:22:59.127759+00:00 app[web.1]: with util.safe_reraise():
+2024-09-27T12:22:59.127759+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+2024-09-27T12:22:59.127760+00:00 app[web.1]: raise exc_value.with_traceback(exc_tb)
+2024-09-27T12:22:59.127760+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 177, in _do_get
+2024-09-27T12:22:59.127760+00:00 app[web.1]: return self._create_connection()
+2024-09-27T12:22:59.127760+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127760+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+2024-09-27T12:22:59.127761+00:00 app[web.1]: return _ConnectionRecord(self)
+2024-09-27T12:22:59.127761+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127761+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 674, in __init__
+2024-09-27T12:22:59.127761+00:00 app[web.1]: self.__connect()
+2024-09-27T12:22:59.127765+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 900, in __connect
+2024-09-27T12:22:59.127765+00:00 app[web.1]: with util.safe_reraise():
+2024-09-27T12:22:59.127766+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+2024-09-27T12:22:59.127766+00:00 app[web.1]: raise exc_value.with_traceback(exc_tb)
+2024-09-27T12:22:59.127769+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 896, in __connect
+2024-09-27T12:22:59.127769+00:00 app[web.1]: self.dbapi_connection = connection = pool._invoke_creator(self)
+2024-09-27T12:22:59.127769+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127770+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 643, in connect
+2024-09-27T12:22:59.127770+00:00 app[web.1]: return dialect.connect(*cargs, **cparams)
+2024-09-27T12:22:59.127770+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127771+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 621, in connect
+2024-09-27T12:22:59.127771+00:00 app[web.1]: return self.loaded_dbapi.connect(*cargs, **cparams)
+2024-09-27T12:22:59.127771+00:00 app[web.1]: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2024-09-27T12:22:59.127771+00:00 app[web.1]: sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) unable to open database file
+2024-09-27T12:22:59.127772+00:00 app[web.1]: (Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-09-27T12:22:59.127860+00:00 app[web.1]: [2024-09-27 12:22:59 +0000] [17] [INFO] Worker exiting (pid: 17)
+2024-09-27T12:22:59.199826+00:00 app[web.1]: [2024-09-27 12:22:59 +0000] [2] [ERROR] Worker (pid:9) exited with code 3
+2024-09-27T12:22:59.212392+00:00 app[web.1]: [2024-09-27 12:22:59 +0000] [2] [ERROR] Worker (pid:17) was sent SIGTERM!
+2024-09-27T12:22:59.300223+00:00 app[web.1]: [2024-09-27 12:22:59 +0000] [2] [ERROR] Shutting down: Master
+2024-09-27T12:22:59.300243+00:00 app[web.1]: [2024-09-27 12:22:59 +0000] [2] [ERROR] Reason: Worker failed to boot.
+2024-09-27T12:22:59.345775+00:00 heroku[web.1]: Process exited with status 3
+2024-09-27T12:22:59.365637+00:00 heroku[web.1]: State changed from up to crashed
+2024-09-27T12:24:11.006424+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=disaster-response-app-be215b66c206.herokuapp.com request_id=45d747a2-5dd4-473d-82aa-12a737a309b2 fwd="80.142.214.23" dyno= connect= service= status=503 bytes= protocol=https
+2024-09-27T12:24:11.672665+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/apple-touch-icon-precomposed.png" host=disaster-response-app-be215b66c206.herokuapp.com request_id=9c5ab5d8-bbb8-4e0f-a373-bee7528c1d68 fwd="80.142.214.23" dyno= connect= service= status=503 bytes= protocol=https
+2024-09-27T12:24:12.277561+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/apple-touch-icon.png" host=disaster-response-app-be215b66c206.herokuapp.com request_id=12020092-31c3-4d4a-a9c7-827307aaaa81 fwd="80.142.214.23" dyno= connect= service= status=503 bytes= protocol=https
