@@ -1,1 +1,1 @@
-web gunicorn disaster-response-app:app
+web gunicorn run.py:app
