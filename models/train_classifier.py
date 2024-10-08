@@ -102,12 +102,7 @@ def build_model():
     3. XGBClassifier: The XGBoost classifier is used as the final estimator in the pipeline.
 
     The function also defines the hyperparameters to be tuned using GridSearchCV. The hyperparameters include:
-    - `vect__max_df`: The maximum document frequency to include a term in the vocabulary.
-    - `vect__max_features`: The maximum number of features to keep based on term frequency.
-    - `tfidf__use_idf`: Whether to apply the inverse document frequency transformation.
     - `clf__n_estimators`: The number of trees in the XGBoost ensemble.
-    - `clf__max_depth`: The maximum depth of each tree in the XGBoost ensemble.
-    - `clf__learning_rate`: The learning rate of the XGBoost algorithm.
 
     The GridSearchCV object is configured with 3-fold cross-validation, a verbose output, and the F1-macro score as the evaluation metric.
 
@@ -121,17 +116,12 @@ def build_model():
     pipeline = Pipeline([
         ("vect", CountVectorizer(tokenizer=tokenize, ngram_range=(1, 1), token_pattern=None)),
         ("tfidf", TfidfTransformer()),
-        ("clf", XGBClassifier(n_jobs=-1, objective='binary:logistic'))
+        ("clf", MultiOutputClassifier(XGBClassifier(n_jobs=-1, use_label_encoder=False, objective='binary:logistic', eval_metric='logloss')))
     ])
 
     # Optimized Parameters for Grid Search
     parameters = {
-        'vect__max_df': [0.8],
-        'vect__max_features': [5000],
-        'tfidf__use_idf': [True],
-        'clf__n_estimators': [200],
-        'clf__max_depth': [7],
-        'clf__learning_rate': [0.2]
+        'clf__estimator__n_estimators': [5],
     }
 
     # GridSearchCV with XGBoost for tuning
