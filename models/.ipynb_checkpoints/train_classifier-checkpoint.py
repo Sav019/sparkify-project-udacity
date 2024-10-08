@@ -28,6 +28,7 @@ from sklearn.model_selection import GridSearchCV, train_test_split, StratifiedKF
 from sklearn.model_selection import learning_curve
 
 def load_data(database_filepath):
+
     """
     Loads the data from the SQLite database and returns the feature matrix (X), 
     target matrix (y), and the category names.
@@ -41,18 +42,9 @@ def load_data(database_filepath):
         category_names (list): The list of category names.
     """
     
-    # Dynamically generate the full path of the SQLite database file
-    basedir = os.path.abspath(os.path.dirname(__file__))  # Get the base directory of the current script
-    database_fullpath = os.path.join(basedir, database_filepath)  # Join the base directory and the relative database file path
-
-    # Create a connection to the SQLite database
-    engine = create_engine("sqlite:///" + database_fullpath)
-    
-    # Assuming the table name is based on the filename without extension
-    table_name = database_filepath.split("/")[-1].split(".")[0]  # Extract table name from the file path
+    engine = create_engine("sqlite:///" + database_filepath)
+    table_name = database_filepath.split("/")[-1]
     df = pd.read_sql_table(table_name, engine)
-    
-    # Separate the feature and target variables
     X = df.message.values
     y = df.iloc[:, 4:].values
     category_names = df.columns[4:]
