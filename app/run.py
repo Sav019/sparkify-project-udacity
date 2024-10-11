@@ -14,7 +14,7 @@ from plotly.graph_objs import Bar
 from joblib import load
 from sqlalchemy import create_engine
 
-from tokenize_mod import tokenize_mod
+from tokenize_mod import tokenize
 
 app = Flask(__name__)
 
