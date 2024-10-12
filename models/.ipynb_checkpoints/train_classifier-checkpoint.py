@@ -1,3 +1,8 @@
+# Download nltk packages
+import nltk
+nltk.download('punkt')
+nltk.download('punkt_tab')
+
 # import libraries
 import pandas as pd
 import sys
@@ -10,8 +15,6 @@ import matplotlib.pyplot as plt
 
 import nltk
 from nltk.tokenize import word_tokenize
-
-nltk.download('punkt') 
 
 from nltk.tokenize import sent_tokenize 
 from nltk.tokenize import word_tokenize 
