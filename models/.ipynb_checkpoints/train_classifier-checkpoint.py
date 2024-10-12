@@ -1,9 +1,3 @@
-# Download nltk packages
-import nltk
-nltk.download('punkt')
-nltk.download('punkt_tab')
-nltk.download('wordnet')
-
 # import libraries
 import pandas as pd
 import sys
