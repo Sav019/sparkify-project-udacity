@@ -7,6 +7,12 @@ import numpy as np
 import pickle
 from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
+
+import nltk
+from nltk.tokenize import word_tokenize
+
+nltk.download('punkt') 
+
 from nltk.tokenize import sent_tokenize 
 from nltk.tokenize import word_tokenize 
 from nltk.corpus import stopwords
