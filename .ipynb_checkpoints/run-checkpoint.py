@@ -1,10 +1,13 @@
+# Download nltk packages
+nltk.download('punkt')
+nltk.download('punkt_tab')
+
 import json
 import re
 import plotly
 import pandas as pd
 
 import nltk
-nltk.download('punkt')
 
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
