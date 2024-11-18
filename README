@@ -1,0 +1,28 @@
+This project is part of the Udacity **Data Scientist** nanodegree program.  
+The dataset used consists of user interaction logs from the fictional music streaming app **Sparkify**.
+
+Project Motivation:
+The motivation behind this project is to analyze user behavior and develop a predictive model to identify users at risk of churning (canceling their subscription). 
+
+Installation:
+The following Python packages are required to run the code in this project:
+- see attached **requirements.txt** file
+
+To install these packages, you can use pip:
+```bash
+pip install pyspark pandas numpy matplotlib seaborn
+
+File Descriptions:
+- **Sparkify_notebook.ipynb**: Jupyter Notebook containing the complete workflow, including data loading, exploration, feature engineering, model building, and evaluation.
+- **sparkify_log_small.json**: JSON dataset containing user interaction logs, such as user actions, session details, song play data, and additional technical information.
+
+Results:
+- Key behavioral indicators of churn include lower interaction frequency, shorter session durations, and reduced engagement.
+- A churn prediction model was developed, with the Gradient-Boosted Tree classifier achieving the best performance. This model yielded an accuracy of approximately 85% and an F1 score indicating reliable predictive ability.
+- Feature analysis revealed that song play frequency, session counts, and interaction types are significant indicators for identifying at-risk users.
+
+A more detailed analysis of the results is given in the following article:
+https://medium.com/@savo.asanin/predicting-user-churn-on-sparkify-a-data-scientists-journey-with-big-data-and-machine-learning-d21ae50cd872
+
+Licensing, Authors, and Acknowledgments:
+This project was completed as part of the **Udacity Data Scientist Nanodegree**. Special thanks goes out to Udacity for the project structure and dataset.
